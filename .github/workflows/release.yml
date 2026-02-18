@@ -14,6 +14,7 @@ jobs:
 
     env:
       isAlpha: false
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     steps:
       - name: Checkout code
@@ -21,7 +22,7 @@ jobs:
         with:
           submodules: recursive
 
-      - name: Get version number
+      - name: Get Version number
         id: version
         run: |
           version=$(grep 'version=' module.prop | awk -F '=' '{print $2}' | sed 's/ (.*)//')
@@ -47,8 +48,6 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           tag_name: ${{ env.TAG_NAME }}
-          files: Surfing_v*.zip
+          files: Surfing_${{ env.TAG_NAME }}_release.zip
           generate_release_notes: false
           body_path: release_notes.txt
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
