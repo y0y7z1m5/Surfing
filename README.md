@@ -22,6 +22,29 @@
 
 This project is a [Magisk](https://github.com/topjohnwu/Magisk), [Kernelsu](https://github.com/tiann/KernelSU), [APatch](https://github.com/bmax121/APatch) module for Clash/mihomo, sing-box, v2ray, xray, hysteria. It supports REDIRECT (TCP only), TPROXY (TCP + UDP) transparent proxy, TUN (TCP + UDP), and hybrid mode REDIRECT (TCP) + TUN (UDP) proxy.
 
+## About This Fork
+
+This fork is optimized for mobile hotspot and USB tethering scenarios, 
+solving the issue of inconvenient control when PC and phone share the same rule set.
+
+### Key Changes
+
+1. **PC IP range direct connection**: PC can use Clash Verge Rev for independent rule control
+2. **DNS mode changed to redir-host**: Avoids PC connection issues under fake-ip mode
+
+### Traffic Flow
+
+PC Apps → Clash Verge Rev → USB/Hotspot → Phone Surfing Direct Pass → Internet
+Phone Apps → Phone Surfing Rule-based Routing → Internet
+
+### Custom Rule Examples
+
+# App direct connection
+- PROCESS-NAME,com.xxx.xxx,🌐 本机·本地直连
+
+# Domain via proxy
+- DOMAIN-SUFFIX,xxx.com,总模式
+
 Based on upstream integration for one-stop service, ready to use. Suitable for:
 - Lazy people
 - Beginners
