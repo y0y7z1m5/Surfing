@@ -142,7 +142,7 @@ dns:
   enable: true
   ipv6: true
   listen: 0.0.0.0:1053
-  enhanced-mode: fake-ip # redir-host
+  enhanced-mode: redir-host # fake-ip
   fake-ip-range: 198.18.0.1/16
   fake-ip-filter:
     - "RULE-SET:CN_域"
@@ -486,11 +486,18 @@ rule-providers:
     url: "https://cdn.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@meta/geo-lite/geoip/private.mrs"
 # —————————
 rules:
+#电脑
+  - SRC-IP-CIDR,10.60.217.0/24,🌐 本机·本地直连
+  - SRC-IP-CIDR,192.168.43.0/24,🌐 本机·本地直连
+
+
   - DST-PORT,53,🌐 DNS_Hijack
   - DST-PORT,853,DNS连接
   - RULE-SET,自定义规则,特殊地址
   - RULE-SET,WebRTC_端/域,WebRTC
   - RULE-SET,No-ads-all_域,广告拦截
+
+  #自定义
   - PROCESS-NAME,com.ss.android.ugc.aweme,抖音
   - RULE-SET,DouYin_域,抖音
   - PROCESS-NAME,com.xingin.xhs,小红书
