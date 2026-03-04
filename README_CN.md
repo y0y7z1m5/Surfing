@@ -22,6 +22,30 @@
 
 本项目为 Clash/mihomo、sing-box、v2ray、xray、hysteria 的 [Magisk](https://github.com/topjohnwu/Magisk) 、 [Kernelsu](https://github.com/tiann/KernelSU) 、 [APatch](https://github.com/bmax121/APatch) 模块。支持 REDIRECT（仅 TCP）、TPROXY（TCP + UDP）透明代理，支持 TUN（TCP + UDP）亦可 REDIRECT（TCP）+ TUN（UDP） 混合模式代理。
 
+## 本 Fork 说明
+
+本 fork 针对手机热点或 USB 共享网络场景进行了优化，解决电脑与手机共用一套规则不便控制的问题。
+
+### 主要更改
+
+1. **电脑 IP 段走直连**：电脑可使用 Clash Verge Rev 独立控制规则
+2. **DNS 模式改为 redir-host**：避免 fake-ip 模式下电脑连接问题
+
+### 流量走向
+电脑程序 → Clash Verge Rev → USB/热点 → 手机 Surfing 直连放行 → 互联网
+手机程序 → 手机 Surfing 规则分流 → 互联网
+
+
+### 自定义规则示例
+
+```yaml
+# 软件走直连
+- PROCESS-NAME,com.xxx.xxx,🌐 本机·本地直连
+
+# 域名走代理
+- DOMAIN-SUFFIX,xxx.com,总模式
+```
+
 基于上游为集成式一体服务、开箱即用   
 此适用以下人群：
 - 懒癌
