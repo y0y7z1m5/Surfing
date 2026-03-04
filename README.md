@@ -39,11 +39,15 @@ Phone Apps → Phone Surfing Rule-based Routing → Internet
 
 ### Custom Rule Examples
 
+```yaml
 # App direct connection
 - PROCESS-NAME,com.xxx.xxx,🌐 本机·本地直连
 
 # Domain via proxy
 - DOMAIN-SUFFIX,xxx.com,总模式
+```
+The above changes only require modifications in config.yaml.
+
 
 Based on upstream integration for one-stop service, ready to use. Suitable for:
 - Lazy people
